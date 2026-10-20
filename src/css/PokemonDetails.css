@@ -1,0 +1,53 @@
+.pokemon-dialog { position: fixed; padding: 0; width: min(800px, calc(100% - 40px)); max-height: calc(100dvh - 48px); border: 0; border-radius: 18px; color: #344052; background: #fff; box-shadow: 0 30px 100px #15202d40; }
+.pokemon-dialog::backdrop { background: #202d3ab3; backdrop-filter: blur(5px); }
+.pokemon-dialog[open] { animation: dialog-in .2s ease-out; }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.dialog-close { position: absolute; right: 15px; top: 15px; color: #7c8593; background: #f5f6f7; z-index: 2; }
+.detail-layout { display: grid; grid-template-columns: .85fr 1fr; }
+.detail-art { display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; min-width: 0; padding: 40px 28px; background: radial-gradient(circle at center, color-mix(in srgb, var(--type-color) 15%, #fff), color-mix(in srgb, var(--type-color) 5%, #fff)); }
+.detail-art::before { position: absolute; width: 235px; height: 235px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--type-color) 17%, #fff); content: ''; }
+.detail-art .eyebrow { position: absolute; top: 35px; left: 28px; color: var(--type-color); }
+.detail-art img, .detail-art .image-fallback { z-index: 1; width: 100%; max-width: 280px; object-fit: contain; filter: drop-shadow(0 20px 10px #283a4620); }
+.detail-content { padding: 49px 32px 30px; }
+.detail-content .type-badges { justify-content: flex-start; margin-bottom: 11px; }
+.detail-content .type-badge { font-size: 10px; padding: 5px 9px; }
+.detail-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 9px; line-height: 1.2; }
+.detail-description { color: #9aa1ab; font-size: 11px; line-height: 1.9; margin-bottom: 23px; }
+.detail-stats-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 17px; }
+.detail-content h3 { margin: 0; font-size: 13px; font-weight: 650; }
+.detail-stats-heading > span { font-size: 10px; color: #a2a9b3; }
+.detail-stats-heading strong { margin-left: 4px; color: #687486; }
+.stat-list { display: flex; flex-direction: column; gap: 12px; }
+.stat-row { display: grid; grid-template-columns: 96px 27px 1fr; gap: 9px; align-items: center; }
+.stat-label { font-size: 10px; color: #929ba7; }
+.stat-value { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat-track { height: 5px; border-radius: 4px; background: #f0f2f4; overflow: hidden; }
+.stat-fill { height: 100%; border-radius: inherit; background: var(--type-color); transition: width .3s ease; }
+.detail-trainers { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 22px; margin-bottom: 22px; }
+.detail-trainers h3 { margin-bottom: 11px; }
+.detail-trainers p { color: #9ba3ad; font-size: 11px; }
+.trainer-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.trainer-chip { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; background: #f5f6f8; color: #778393; border-radius: 5px; font-size: 10px; }
+.detail-content > .favorite-button { width: 100%; font-size: 11px; }
+.detail-content > .favorite-button.is-favorite { background: #f6f1df; color: #a1822c; }
+.detail-footer { display: flex; justify-content: space-between; gap: 20px; padding: 16px 25px; background: #fafbfc; border-top: 1px solid var(--line); }
+.detail-footer .button { min-width: 130px; gap: 15px; text-align: left; font-size: 12px; border: 0; background: transparent; padding: 3px 5px; }
+.detail-footer .button:hover { color: var(--accent); }
+.detail-footer .button:last-child { text-align: right; }
+.detail-nav-label { display: block; font-weight: 400; color: #9ca5b1; font-size: 9px; margin-bottom: 3px; }
+
+@media (max-width: 640px) {
+  .pokemon-dialog { width: calc(100% - 24px); max-height: calc(100dvh - 24px); border-radius: 13px; }
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-art { height: 220px; padding: 24px; }
+  .detail-art::before { width: 175px; height: 175px; }
+  .detail-art .eyebrow { top: 23px; left: 22px; font-size: 8px; }
+  .detail-art img, .detail-art .image-fallback { width: 190px; height: 190px; }
+  .detail-content { padding: 24px 23px; }
+  .detail-title { font-size: 29px; }
+  .detail-description { margin-bottom: 18px; }
+  .stat-row { grid-template-columns: 104px 30px 1fr; }
+  .stat-label { font-size: 11px; }
+  .detail-footer { gap: 8px; padding: 12px 18px; }
+  .detail-footer .button { min-width: 0; gap: 9px; font-size: 11px; }
+}

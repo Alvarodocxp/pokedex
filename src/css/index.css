@@ -1,0 +1,69 @@
+@import './App.css';
+@import './PokemonCard.css';
+@import './PokemonDetails.css';
+@import './Trainers.css';
+
+:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #273246;
+  background: #f6f7f9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --accent: #df4c3e;
+  --accent-light: #fceeea;
+  --muted: #77808e;
+  --line: #e9ecf0;
+  --type-typeless: #7d8795;
+  --type-normal: #858e98;
+  --type-fire: #de7649;
+  --type-water: #4c91c8;
+  --type-grass: #5e9d70;
+  --type-electric: #bc921a;
+  --type-ice: #4da6aa;
+  --type-fighting: #bd645e;
+  --type-poison: #a173b5;
+  --type-ground: #b28e55;
+  --type-flying: #8890bd;
+  --type-psychic: #d4789e;
+  --type-bug: #8b9d4e;
+  --type-rock: #9d8d62;
+  --type-ghost: #8b77a6;
+  --type-dark: #7c7270;
+  --type-dragon: #7776bb;
+  --type-steel: #6e969f;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, select { font: inherit; }
+button, select { cursor: pointer; }
+button { -webkit-tap-highlight-color: transparent; }
+button, a, input, select { outline-offset: 4px; }
+:focus-visible { outline: 3px solid #3875b9; }
+button { color: inherit; }
+button:disabled { cursor: default; }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+svg { flex-shrink: 0; vertical-align: middle; }
+h1, h2, h3, p { margin-top: 0; }
+button { touch-action: manipulation; }
+::selection { background: #fae1d6; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; left: 18px; top: -80px; z-index: 20; padding: 12px 20px; background: #fff; border: 2px solid var(--accent); border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+.icon-button { display: inline-flex; justify-content: center; align-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #a0a6b0; transition: background .2s, color .2s; }
+.icon-button:hover { color: var(--accent); background: #f8eee9; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; border: 1px solid transparent; border-radius: 9px; padding: 11px 17px; font-size: 13px; font-weight: 600; transition: background .2s; }
+.button-primary { background: var(--accent); color: #fff; }
+.button-primary:hover { background: #c84134; }
+.button-secondary { background: #fff; border-color: var(--line); }
+.button-secondary:hover { background: #f7f8fa; }
+.eyebrow { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
+.status-dot { width: 6px; height: 6px; display: inline-block; flex-shrink: 0; border-radius: 50%; background: #77a787; box-shadow: 0 0 0 3px #77a78714; }
+.image-fallback { display: flex; align-items: center; justify-content: center; color: #9299a5; aspect-ratio: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
