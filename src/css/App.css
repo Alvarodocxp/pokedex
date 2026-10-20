@@ -28,7 +28,7 @@
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 246px; position: relative; overflow: hidden; padding: 30px 32px; margin-bottom: 27px; border: 1px solid #ebe9e1; border-radius: 15px; background: #efeee7; background: linear-gradient(110deg, #f0f0e9, #f4f2e9 57%, #e7eee6); }
 .hero-copy { z-index: 1; }
 .hero .eyebrow { color: #86937c; font-size: 8px; letter-spacing: 1.55px; margin-bottom: 15px; }
-.hero-dot { width: 5px; height: 5px; border-radius: 50%; background: #8b9c7c; }
+.hero-dot { width: 10px; height: 10px; border-radius: 50%; background: #8b9c7c; }
 .hero h1 { color: #2b3c36; font-size: clamp(28px, 2.65vw, 43px); font-weight: 750; letter-spacing: -1.6px; line-height: 1.2; margin: 0 0 12px; }
 .hero h1 em { color: #799166; font-style: normal; }
 .hero p { max-width: 340px; font-size: 11px; line-height: 1.9; color: #7a8178; margin-bottom: 20px; }

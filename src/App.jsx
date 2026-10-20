@@ -72,9 +72,9 @@ export default function App() {
             <section className="hero">
               <div className="hero-copy">
                 <span className="eyebrow"><span className="hero-dot" /> {isFavoritesPage ? 'SUA COLEÇÃO, DO SEU JEITO' : 'A AVENTURA COMEÇA EM KANTO'}</span>
-                <h1>{isFavoritesPage ? <>Os seus <em>favoritos.</em></> : <>Pequenas criaturas.<br />Grandes <em>descobertas.</em></>}</h1>
-                <p>{isFavoritesPage ? 'Um lugar especial para os Pokémon que conquistaram você.' : 'Explore os 151 Pokémon da primeira geração e encontre o seu próximo favorito.'}</p>
-                <div className="hero-meta"><span><Icon name="pokeball" size={16} /><strong>{isFavoritesPage ? favorites.length : pokemon.length}</strong> Pokémon</span><span className="meta-dot" /><span><Icon name="leaf" size={15} /> Infinitas possibilidades</span></div>
+                <h1>{isFavoritesPage ? <>Os seus <em>favoritos.</em></> : <>Kanto.<br />1ª <em>Geração.</em></>}</h1>
+                <p>{isFavoritesPage ? 'Um lugar especial para os Pokémon que conquistaram você.' : 'Explore os 151 Pokémon da primeira geração.'}</p>
+                <div className="hero-meta"><span><Icon name="pokeball" size={16} /><strong>{isFavoritesPage ? favorites.length : pokemon.length}</strong> </span><span className="meta-dot" /></div>
               </div>
               <div className="hero-art" aria-hidden="true">
                 <span className="hero-art-ring ring-one" /><span className="hero-art-ring ring-two" />

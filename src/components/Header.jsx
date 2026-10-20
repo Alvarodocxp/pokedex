@@ -30,7 +30,7 @@ export default function Header({ activePage, onNavigate, favoriteCount }) {
         <span className="guide-line" />
         <span className="guide-region"><span className="status-dot" /> Região de Kanto</span>
       </div>
-      <div className="sidebar-footer"><Icon name="pokeball" size={18} /><span>Feito para quem ama Pokémon.</span></div>
+      <div className="sidebar-footer"><Icon name="pokeball" size={18} /></div>
     </aside>
   )
 }
