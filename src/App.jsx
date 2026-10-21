@@ -22,13 +22,13 @@ function readFavorites() {
 export default function App() {
   const [activePage, setActivePage] = useState('pokedex')
   const [query, setQuery] = useState('')
-  const [type, setType] = useState('all')
+  const [selectedTypes, setSelectedTypes] = useState([])
   const [sort, setSort] = useState('id')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
   const [favorites, setFavorites] = useState(readFavorites)
   const isFavoritesPage = activePage === 'favorites'
-  const hasFilters = query.trim() !== '' || type !== 'all'
-  const filteredPokemon = filterPokemon(pokemon, { query, type, sort, favorites, favoritesOnly: isFavoritesPage })
+  const hasFilters = query.trim() !== '' || selectedTypes.length > 0
+  const filteredPokemon = filterPokemon(pokemon, { query, selectedTypes, sort, favorites, favoritesOnly: isFavoritesPage })
 
   useEffect(() => {
     try {
@@ -44,7 +44,14 @@ export default function App() {
 
   function resetFilters() {
     setQuery('')
-    setType('all')
+    setSelectedTypes([])
+  }
+
+  function toggleType(name) {
+    setSelectedTypes((current) => {
+      if (current.includes(name)) return current.filter((item) => item !== name)
+      return current.length < 2 ? [...current, name] : current
+    })
   }
 
   function navigate(page) {
@@ -64,32 +71,28 @@ export default function App() {
       <Header activePage={activePage} onNavigate={navigate} favoriteCount={favorites.length} />
       <div className="workspace">
         <header className="topbar">
-          <div className="breadcrumb"><Icon name="globe" size={17} /><span>Universo Pokémon</span><Icon name="chevron-right" size={13} /><strong>{activePage === 'trainers' ? 'Treinadores' : isFavoritesPage ? 'Favoritos' : 'Pokédex'}</strong></div>
+          <div className="breadcrumb"><Icon name="globe" size={17} /><span>Pokémon</span><Icon name="chevron-right" size={13} /><strong>{activePage === 'trainers' ? 'Treinadores' : isFavoritesPage ? 'Favoritos' : 'Pokédex'}</strong></div>
           <span className="generation-label"><span className="status-dot" /> 1ª geração <span className="topbar-divider" /> Kanto</span>
         </header>
         <main className="main-content" id="conteudo" tabIndex={-1}>
           {activePage === 'trainers' ? <Trainers onSelectPokemon={setSelectedPokemon} /> : <>
             <section className="hero">
               <div className="hero-copy">
-                <span className="eyebrow"><span className="hero-dot" /> {isFavoritesPage ? 'SUA COLEÇÃO, DO SEU JEITO' : 'A AVENTURA COMEÇA EM KANTO'}</span>
-                <h1>{isFavoritesPage ? <>Os seus <em>favoritos.</em></> : <>Kanto.<br />1ª <em>Geração.</em></>}</h1>
-                <p>{isFavoritesPage ? 'Um lugar especial para os Pokémon que conquistaram você.' : 'Explore os 151 Pokémon da primeira geração.'}</p>
-                <div className="hero-meta"><span><Icon name="pokeball" size={16} /><strong>{isFavoritesPage ? favorites.length : pokemon.length}</strong> </span><span className="meta-dot" /></div>
+                <h1>{isFavoritesPage ? 'Favoritos' : <>Kanto.<br />1ª <em>Geração.</em></>}</h1>
+                <div className="hero-meta"><span><Icon name="pokeball" size={16} /><strong>{isFavoritesPage ? favorites.length : pokemon.length}</strong> Pokémon</span></div>
               </div>
               <div className="hero-art" aria-hidden="true">
                 <span className="hero-art-ring ring-one" /><span className="hero-art-ring ring-two" />
-                <span className="hero-art-spark spark-one">+</span><span className="hero-art-spark spark-two">+</span>
                 <PokemonImage pokemon={pokemon[0]} className="hero-pokemon hero-bulbasaur" loading="eager" alt="" />
                 <PokemonImage pokemon={pokemon[6]} className="hero-pokemon hero-squirtle" loading="eager" alt="" />
                 <PokemonImage pokemon={pokemon[3]} className="hero-pokemon hero-charmander" loading="eager" alt="" />
-                <span className="hero-art-caption">SEU PRIMEIRO PARCEIRO ESTÁ AQUI.</span>
               </div>
             </section>
-            <SearchBar query={query} onQueryChange={setQuery} type={type} onTypeChange={setType} hasFilters={hasFilters} onReset={resetFilters} />
+            <SearchBar query={query} onQueryChange={setQuery} selectedTypes={selectedTypes} onToggleType={toggleType} onClearTypes={() => setSelectedTypes([])} hasFilters={hasFilters} onReset={resetFilters} />
             <div className="results-toolbar">
-              <div className="results-title"><h2>{isFavoritesPage ? 'Minha coleção' : 'Todos os Pokémon'}</h2><span className="results-count" role="status" aria-live="polite" aria-atomic="true">{filteredPokemon.length} {filteredPokemon.length === 1 ? 'encontrado' : 'encontrados'}</span></div>
+              <div className="results-title"><h2>{isFavoritesPage ? 'Favoritos' : 'Pokémon'}</h2><span className="results-count" role="status" aria-live="polite" aria-atomic="true">{filteredPokemon.length} {filteredPokemon.length === 1 ? 'encontrado' : 'encontrados'}</span></div>
               <div className="results-actions">
-                <button type="button" className="random-button" onClick={chooseRandomPokemon} title="Descobrir um Pokémon aleatório"><Icon name="shuffle" size={16} /><span>Surpreenda-me</span></button>
+                <button type="button" className="random-button" onClick={chooseRandomPokemon} title="Selecionar Pokémon aleatório"><Icon name="shuffle" size={16} /><span>Aleatório</span></button>
                 <span className="toolbar-divider" />
                 <label className="sort-label" htmlFor="pokemon-sort">Ordenar por:</label>
                 <select id="pokemon-sort" className="sort-select" value={sort} onChange={(event) => setSort(event.target.value)}>
@@ -100,7 +103,6 @@ export default function App() {
             </div>
             <PokemonList pokemon={filteredPokemon} favorites={favorites} onSelect={setSelectedPokemon} onToggleFavorite={toggleFavorite} isFavoritesPage={isFavoritesPage} hasFilters={hasFilters} onReset={resetFilters} onExplore={() => navigate('pokedex')} />
           </>}
-          <footer className="page-footer"><span><Icon name="pokeball" size={16} /> Uma nova descoberta a cada Pokémon.</span><span>KANTO · GERAÇÃO 01</span></footer>
         </main>
       </div>
       {selectedPokemon && <PokemonDetails pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} onSelect={setSelectedPokemon} favorites={favorites} onToggleFavorite={toggleFavorite} />}

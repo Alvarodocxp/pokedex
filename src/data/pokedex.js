@@ -53,11 +53,11 @@ export function normalizeSearch(text) {
 
 export function filterPokemon(
   list,
-  { query = '', type = 'all', favoritesOnly = false, favorites = [], sort = 'id' } = {},
+  { query = '', selectedTypes = [], favoritesOnly = false, favorites = [], sort = 'id' } = {},
 ) {
   const search = normalizeSearch(query);
   const searchedId = /^#?\d+$/.test(search) ? Number(search.replace('#', '')) : null;
-  const selectedType = normalizeSearch(type);
+  const normalizedTypes = selectedTypes.map(normalizeSearch);
   const favoriteIds = new Set(favorites.map(Number));
   const statSort = STAT_FIELDS.some(({ key }) => key === sort);
 
@@ -66,11 +66,12 @@ export function filterPokemon(
       const matchesQuery = !search || (searchedId !== null
         ? entry.id === searchedId
         : normalizeSearch(entry.name).includes(search));
-      const matchesType = selectedType === 'all'
-        || (selectedType === 'typeless' && entry.types.length === 0)
-        || entry.types.some((entryType) => normalizeSearch(entryType.name) === selectedType);
+      const matchesTypes = normalizedTypes.every((selectedType) => (
+        (selectedType === 'typeless' && entry.types.length === 0)
+        || entry.types.some((entryType) => normalizeSearch(entryType.name) === selectedType)
+      ));
       const matchesFavorites = !favoritesOnly || favoriteIds.has(entry.id);
-      return matchesQuery && matchesType && matchesFavorites;
+      return matchesQuery && matchesTypes && matchesFavorites;
     })
     .sort((left, right) => {
       if (sort === 'name') {

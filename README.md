@@ -36,7 +36,7 @@ O preview fica normalmente em **http://127.0.0.1:4173**; confirme o endereço ex
 
 - Lista com os 151 Pokémon, mostrando ID, nome, tipos e os seis atributos: HP, ataque, defesa, ataque especial, defesa especial e velocidade.
 - Pesquisa imediata por parte do nome ou ID exato, incluindo os formatos `25`, `025` e `#025`.
-- Filtro pelos tipos presentes no JSON, combinado com a pesquisa e os favoritos.
+- Os 18 tipos do JSON ficam visíveis na barra de filtros. É possível selecionar até dois: o Pokémon deve possuir **ambos** os tipos. Sem seleção, todos são exibidos. O filtro combina com pesquisa e favoritos.
 - Detalhes do Pokémon selecionado com ID, nome, tipos e todos os atributos.
 - Consulta dos 12 treinadores, suas insígnias e seus Pokémon relacionados no arquivo fornecido.
 - Mensagem para uma busca sem resultados e opção de limpar os filtros.
@@ -78,9 +78,9 @@ Pokémon e seus personagens pertencem aos respectivos titulares. Este projeto fo
 
 ## Validação
 
-Verificações realizadas: build de produção sem erros; 32 verificações de integridade dos dados, pesquisa, filtros e ordenação com Node.js; 13 grupos de testes de interação no Chrome. Foram conferidos os 151 cards, os 151 modais, os seis atributos de cada Pokémon, as oito ordenações, pesquisa, filtros, favoritos persistentes, os 12 treinadores e suas equipes, seleção aleatória e navegação por teclado com restauração de foco.
+Build de produção aprovado. A camada de dados passou por 22 verificações com as asserções nativas do Node.js: seleção de zero, um e dois tipos, combinação de filtros, seis ordenações por atributo, imutabilidade e integridade do JSON. Planta + Veneno encontra Bulbasaur; Fogo + Água não encontra resultados; Sem tipo encontra Mew.
 
-A versão de produção também foi conferida nas larguras de 320, 390, 768, 1024 e 1440 pixels, sem rolagem horizontal, erros JavaScript ou requisições a serviços externos.
+No Chrome, 52 verificações cobriram seleção e remoção dos tipos, limite de dois, combinações com pesquisa e favoritos, ordenação, teclado e estados sem resultados, sem erros JavaScript. Os 18 tipos foram conferidos nas larguras de 320, 390, 768, 1024 e 1440 pixels, sem cortes ou rolagem horizontal.
 
 Para conferir novamente:
 
@@ -93,7 +93,7 @@ No navegador, confira:
 
 1. A lista inicial contém todos os 151 Pokémon e exibe os seis atributos.
 2. `Bulba` encontra Bulbasaur; `25`, `025` e `#025` encontram Pikachu.
-3. Pesquisa, tipo e favoritos funcionam juntos; uma combinação sem resultados mostra a mensagem correspondente.
+3. Os 18 tipos estão visíveis; é possível selecionar e remover até dois. Planta + Veneno encontra Bulbasaur e Fogo + Água mostra o estado sem resultados. Pesquisa, tipos, favoritos e ordenação funcionam juntos.
 4. Os detalhes exibem o Pokémon selecionado e seus seis atributos.
 5. Cada treinador mostra a quantidade de insígnias e os Pokémon associados no JSON.
 6. Favoritos permanecem após recarregar a página; cada ordenação e a seleção aleatória funcionam.

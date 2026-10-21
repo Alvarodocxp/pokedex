@@ -83,7 +83,6 @@ export default function PokemonDetails({ pokemon, onClose, onSelect, favorites, 
             {displayedTypes.map((type) => <TypeBadge key={type.id} type={type} />)}
           </div>
           <h2 id={titleId} className="detail-title">{pokemon.name}</h2>
-          <p className="detail-description">Conheça seus atributos e os treinadores que fazem parte da sua jornada.</p>
 
           <section className="detail-stats" aria-label="Atributos base">
             <div className="detail-stats-heading">

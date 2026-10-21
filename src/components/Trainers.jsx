@@ -13,9 +13,8 @@ export default function Trainers({ onSelectPokemon }) {
     <section aria-labelledby="trainers-title">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">COMPANHEIROS DE JORNADA</p>
-          <h2 className="section-title" id="trainers-title">Cada treinador, uma história<span>.</span></h2>
-          <p className="section-description">Conheça os treinadores de Kanto e os Pokémon que estão ao seu lado.</p>
+          <h1 className="section-title" id="trainers-title">Treinadores</h1>
+          <p className="section-description">Insígnias e equipes.</p>
         </div>
         <span className="trainer-count"><Icon name="users" size={18} />{trainers.length} treinadores</span>
       </div>

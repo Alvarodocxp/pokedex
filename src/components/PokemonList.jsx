@@ -6,9 +6,9 @@ export default function PokemonList({ pokemon, favorites, onSelect, onToggleFavo
     return (
       <section className="empty-state" aria-label="Nenhum Pokémon encontrado">
         <span className="empty-icon"><Icon name={isFavoritesPage && !hasFilters ? 'star' : 'search'} size={38} /></span>
-        <h2>{isFavoritesPage && !hasFilters ? 'Seus favoritos começam aqui' : 'Nenhum Pokémon por aqui'}</h2>
-        <p>{isFavoritesPage && !hasFilters ? 'Toque na estrela de um Pokémon para guardá-lo nesta coleção.' : 'Tente outro nome, número ou tipo para continuar sua descoberta.'}</p>
-        <button className="button button-primary" type="button" onClick={hasFilters ? onReset : onExplore}>{hasFilters ? 'Limpar filtros' : 'Explorar a Pokédex'}<Icon name="arrow-right" size={16} /></button>
+        <h2>{isFavoritesPage && !hasFilters ? 'Nenhum favorito' : 'Nenhum Pokémon encontrado'}</h2>
+        <p>{isFavoritesPage && !hasFilters ? 'Marque a estrela de um Pokémon para adicioná-lo.' : 'Altere a pesquisa ou os tipos selecionados.'}</p>
+        <button className="button button-primary" type="button" onClick={hasFilters ? onReset : onExplore}>{hasFilters ? 'Limpar filtros' : 'Ver Pokémon'}<Icon name="arrow-right" size={16} /></button>
       </section>
     )
   }
